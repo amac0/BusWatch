@@ -14,6 +14,7 @@ import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
+import kotlin.time.Duration.Companion.seconds
 import org.junit.After
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -39,7 +40,7 @@ class ArrivalViewModelTest {
     }
 
     @Test
-    fun `loadArrivals success shows arrivals grouped by route`() = runTest {
+    fun `loadArrivals success shows arrivals grouped by route`() = runTest(timeout = 10.seconds) {
         val mockArrivals = listOf(
             BusArrival("25", "Ilf", 3, ArrivalType.LIVE),
             BusArrival("25", "Ilf", 8, ArrivalType.LIVE)
@@ -49,7 +50,10 @@ class ArrivalViewModelTest {
 
         viewModel = ArrivalViewModel(tflRepository)
         viewModel.loadArrivals("490000001B", "BP", "Oxford St")
-        testDispatcher.scheduler.advanceTimeBy(100) // Advance just enough for initial load
+
+        // Just advance enough for the initial load to complete
+        testDispatcher.scheduler.advanceTimeBy(1000)
+        testDispatcher.scheduler.runCurrent()
 
         val state = viewModel.uiState.value
         assertTrue(state is UiState.Success)
