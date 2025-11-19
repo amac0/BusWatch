@@ -40,7 +40,7 @@ class ArrivalViewModelTest {
     }
 
     @Test
-    fun `loadArrivals success shows arrivals grouped by route`() = runTest(timeout = 10.seconds) {
+    fun `loadArrivals success shows arrivals grouped by route`() = runTest {
         val mockArrivals = listOf(
             BusArrival("25", "Ilf", 3, ArrivalType.LIVE),
             BusArrival("25", "Ilf", 8, ArrivalType.LIVE)
@@ -49,11 +49,12 @@ class ArrivalViewModelTest {
         coEvery { tflRepository.getArrivals(any()) } returns Result.Success(mockArrivals)
 
         viewModel = ArrivalViewModel(tflRepository)
+        // Disable auto-refresh for testing
+        viewModel.enableAutoRefresh = false
         viewModel.loadArrivals("490000001B", "BP", "Oxford St")
 
-        // Just advance enough for the initial load to complete
-        testDispatcher.scheduler.advanceTimeBy(1000)
-        testDispatcher.scheduler.runCurrent()
+        // Advance the dispatcher to process the coroutine
+        testDispatcher.scheduler.advanceUntilIdle()
 
         val state = viewModel.uiState.value
         assertTrue(state is UiState.Success)

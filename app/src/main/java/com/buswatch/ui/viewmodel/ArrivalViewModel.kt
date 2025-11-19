@@ -32,12 +32,17 @@ class ArrivalViewModel @Inject constructor(
     private var stopName: String = ""
     private var lastActivityTime: Long = System.currentTimeMillis()
 
+    // Allow tests to disable auto-refresh
+    internal var enableAutoRefresh: Boolean = true
+
     fun loadArrivals(stopId: String, stopCode: String, stopName: String) {
         this.stopId = stopId
         this.stopCode = stopCode
         this.stopName = stopName
         fetchArrivals()
-        startAutoRefresh()
+        if (enableAutoRefresh) {
+            startAutoRefresh()
+        }
     }
 
     fun onUserActivity() {
