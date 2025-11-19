@@ -8,6 +8,7 @@ import android.location.Location
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.buswatch.util.Result
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.suspendCancellableCoroutine
 import timber.log.Timber
 import javax.inject.Inject
@@ -16,7 +17,7 @@ import kotlin.coroutines.resume
 
 @Singleton
 class LocationRepository @Inject constructor(
-    private val context: Context,
+    @ApplicationContext private val context: Context,
     private val locationClient: FusedLocationProviderClient
 ) {
     suspend fun getCurrentLocation(): Result<Location> {
