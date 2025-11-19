@@ -49,7 +49,7 @@ class ArrivalViewModelTest {
 
         viewModel = ArrivalViewModel(tflRepository)
         viewModel.loadArrivals("490000001B", "BP", "Oxford St")
-        testDispatcher.scheduler.advanceUntilIdle()
+        testDispatcher.scheduler.advanceTimeBy(100) // Advance just enough for initial load
 
         val state = viewModel.uiState.value
         assertTrue(state is UiState.Success)
