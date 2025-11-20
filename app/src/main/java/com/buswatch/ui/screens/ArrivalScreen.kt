@@ -127,8 +127,13 @@ fun ArrivalItem(
         )
         Text(text = "→")
         Spacer(modifier = Modifier.width(4.dp))
-        Text(text = arrival.destinationShort)
-        Spacer(modifier = Modifier.weight(1f))
+        Text(
+            text = arrival.destinationShort,
+            modifier = Modifier.weight(1f),
+            maxLines = 1,
+            overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
+        )
+        Spacer(modifier = Modifier.width(4.dp))
 
         val timeText = if (arrival.minutesUntil < 1) "Due" else "${arrival.minutesUntil} min"
         val timeColor = when (arrival.arrivalType) {

@@ -56,11 +56,10 @@ class TfLRepository @Inject constructor(
                     "Estimated" -> ArrivalType.LIVE
                     else -> ArrivalType.SCHEDULED
                 }
-                val destinationShort = dto.destinationName.take(3)
 
                 BusArrival(
                     route = dto.lineName,
-                    destinationShort = destinationShort,
+                    destinationShort = dto.destinationName,
                     minutesUntil = minutesUntil,
                     arrivalType = arrivalType
                 )
