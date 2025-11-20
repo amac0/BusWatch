@@ -61,6 +61,21 @@ fun StopListScreen(
                         }
                     )
                 }
+                item {
+                    Chip(
+                        onClick = {
+                            view.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
+                            viewModel.loadNearbyStops()
+                        },
+                        label = {
+                            Text(text = "Refresh")
+                        },
+                        colors = ChipDefaults.secondaryChipColors(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 4.dp, horizontal = 8.dp)
+                    )
+                }
             }
         }
     }
