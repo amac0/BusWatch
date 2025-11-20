@@ -33,7 +33,22 @@ class StopListViewModel @Inject constructor(
     private var currentLocation: Location? = null
 
     init {
-        loadNearbyStops()
+        // Start monitoring location updates and refresh stops when location changes
+        viewModelScope.launch {
+            var previousLocation: Location? = null
+            locationRepository.locationUpdates.collect { location ->
+                currentLocation = location
+
+                // Refresh stops if this is the first location or if moved significantly (>200m)
+                val previous = previousLocation
+                val shouldRefresh = previous == null || previous.distanceTo(location) > 200
+
+                if (shouldRefresh) {
+                    fetchNearbyStops(location.latitude, location.longitude)
+                    previousLocation = location
+                }
+            }
+        }
     }
 
     fun loadNearbyStops() {

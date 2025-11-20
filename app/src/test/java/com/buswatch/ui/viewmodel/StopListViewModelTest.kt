@@ -57,7 +57,8 @@ class StopListViewModelTest {
             BusStop("1", "BP", "Oxford St", 51.5074, -0.1278, listOf("25"), 100)
         )
 
-        coEvery { locationRepository.getCurrentLocation() } returns Result.Success(mockLocation)
+        val locationFlow = kotlinx.coroutines.flow.MutableStateFlow(mockLocation)
+        coEvery { locationRepository.locationUpdates } returns locationFlow
         coEvery { tflRepository.getNearbyStops(any(), any()) } returns Result.Success(mockStops)
         every { preferencesDataStore.getLastStop() } returns flowOf(null)
 
@@ -66,5 +67,51 @@ class StopListViewModelTest {
 
         val state = viewModel.uiState.value
         assertTrue(state is UiState.Success)
+    }
+
+    @Test
+    fun `updates stops when location changes significantly`() = runTest {
+        val location1 = mockk<Location> {
+            every { latitude } returns 51.529168
+            every { longitude } returns -0.180107
+            every { distanceTo(any()) } returns 500f // Significant distance change
+        }
+        val location2 = mockk<Location> {
+            every { latitude } returns 51.525417
+            every { longitude } returns -0.179694
+            every { distanceTo(any()) } returns 500f // Significant distance change
+        }
+
+        val stopsAtLocation1 = listOf(
+            BusStop("1", "G", "Clifton Road / Maida Vale", 51.529168, -0.180107, listOf("6"), 61)
+        )
+        val stopsAtLocation2 = listOf(
+            BusStop("2", "M", "Clifton Road", 51.525417, -0.179694, listOf("6"), 96)
+        )
+
+        // Setup: LocationRepository will emit location updates via a Flow
+        val locationFlow = kotlinx.coroutines.flow.MutableStateFlow(location1)
+        coEvery { locationRepository.locationUpdates } returns locationFlow
+        coEvery { tflRepository.getNearbyStops(51.529168, -0.180107) } returns Result.Success(stopsAtLocation1)
+        coEvery { tflRepository.getNearbyStops(51.525417, -0.179694) } returns Result.Success(stopsAtLocation2)
+        every { preferencesDataStore.getLastStop() } returns flowOf(null)
+
+        // Create ViewModel - should load stops from location1
+        viewModel = StopListViewModel(locationRepository, tflRepository, preferencesDataStore)
+        testDispatcher.scheduler.advanceUntilIdle()
+
+        // Verify initial stops from location 1
+        val state1 = viewModel.uiState.value
+        assertTrue(state1 is UiState.Success)
+        assertEquals("G", (state1 as UiState.Success).data.stops[0].code)
+
+        // Simulate location change to location 2
+        locationFlow.value = location2
+        testDispatcher.scheduler.advanceUntilIdle()
+
+        // Verify stops updated to location 2 (Stop M should now appear)
+        val state2 = viewModel.uiState.value
+        assertTrue(state2 is UiState.Success)
+        assertEquals("M", (state2 as UiState.Success).data.stops[0].code)
     }
 }
