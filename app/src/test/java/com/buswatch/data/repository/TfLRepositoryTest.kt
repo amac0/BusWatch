@@ -5,6 +5,7 @@ import com.buswatch.data.remote.TfLApiService
 import com.buswatch.data.remote.dto.ArrivalDto
 import com.buswatch.data.remote.dto.LineDto
 import com.buswatch.data.remote.dto.StopPointDto
+import com.buswatch.data.remote.dto.StopPointsResponse
 import com.buswatch.data.remote.dto.TimingDto
 import com.buswatch.domain.model.ArrivalType
 import com.buswatch.util.Result
@@ -42,8 +43,9 @@ class TfLRepositoryTest {
                 lines = listOf(LineDto("25", "25"))
             )
         )
+        val mockResponse = StopPointsResponse(stopPoints = mockStops)
 
-        coEvery { apiService.getNearbyStops(any(), any(), any(), any()) } returns mockStops
+        coEvery { apiService.getNearbyStops(any(), any(), any(), any()) } returns mockResponse
 
         val result = repository.getNearbyStops(51.5074, -0.1278)
 

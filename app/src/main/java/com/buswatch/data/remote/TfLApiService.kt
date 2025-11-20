@@ -2,7 +2,7 @@
 package com.buswatch.data.remote
 
 import com.buswatch.data.remote.dto.ArrivalDto
-import com.buswatch.data.remote.dto.StopPointDto
+import com.buswatch.data.remote.dto.StopPointsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -14,7 +14,7 @@ interface TfLApiService {
         @Query("lon") longitude: Double,
         @Query("stopTypes") stopTypes: String = "NaptanPublicBusCoachTram",
         @Query("radius") radius: Int = 500
-    ): List<StopPointDto>
+    ): StopPointsResponse
 
     @GET("StopPoint/{stopId}/Arrivals")
     suspend fun getArrivals(

@@ -18,7 +18,8 @@ class TfLRepository @Inject constructor(
 ) {
     suspend fun getNearbyStops(latitude: Double, longitude: Double): Result<List<BusStop>> {
         return executeWithRetry {
-            val stops = apiService.getNearbyStops(latitude, longitude)
+            val response = apiService.getNearbyStops(latitude, longitude)
+            val stops = response.stopPoints
 
             val userLocation = Location("").apply {
                 this.latitude = latitude

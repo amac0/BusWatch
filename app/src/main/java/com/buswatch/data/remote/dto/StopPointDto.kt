@@ -3,6 +3,10 @@ package com.buswatch.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
+data class StopPointsResponse(
+    @SerializedName("stopPoints") val stopPoints: List<StopPointDto>
+)
+
 data class StopPointDto(
     @SerializedName("id") val id: String,
     @SerializedName("commonName") val commonName: String,
