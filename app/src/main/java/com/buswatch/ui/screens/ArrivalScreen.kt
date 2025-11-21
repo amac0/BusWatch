@@ -82,13 +82,11 @@ fun ArrivalScreen(
                     }
                 }
 
-                state.data.arrivalsByRoute.forEach { (route, arrivals) ->
-                    items(arrivals.size) { index ->
-                        ArrivalItem(
-                            arrival = arrivals[index],
-                            onClick = { viewModel.onUserActivity() }
-                        )
-                    }
+                items(state.data.arrivals.size) { index ->
+                    ArrivalItem(
+                        arrival = state.data.arrivals[index],
+                        onClick = { viewModel.onUserActivity() }
+                    )
                 }
 
                 item {

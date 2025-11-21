@@ -58,14 +58,11 @@ class ArrivalViewModel @Inject constructor(
                     if (result.data.isEmpty()) {
                         _uiState.value = UiState.Error("No buses currently scheduled", canRetry = true)
                     } else {
-                        val groupedArrivals = result.data
-                            .groupBy { it.route }
-                            .mapValues { (_, arrivals) -> arrivals.take(2) }
-
+                        // Arrivals are already sorted by minutesUntil in TfLRepository
                         _uiState.value = UiState.Success(
-                            ArrivalData(stopCode, stopName, groupedArrivals)
+                            ArrivalData(stopCode, stopName, result.data)
                         )
-                        Timber.d("Loaded arrivals for ${groupedArrivals.size} routes")
+                        Timber.d("Loaded ${result.data.size} arrivals")
                     }
                 }
                 is Result.Error -> {

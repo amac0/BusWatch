@@ -6,5 +6,5 @@ import com.buswatch.domain.model.BusArrival
 data class ArrivalData(
     val stopCode: String,
     val stopName: String,
-    val arrivalsByRoute: Map<String, List<BusArrival>>
+    val arrivals: List<BusArrival>
 )
