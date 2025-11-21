@@ -56,7 +56,7 @@ class ArrivalViewModel @Inject constructor(
             when (val result = tflRepository.getArrivals(stopId)) {
                 is Result.Success -> {
                     if (result.data.isEmpty()) {
-                        _uiState.value = UiState.Error("No buses currently scheduled", canRetry = false)
+                        _uiState.value = UiState.Error("No buses currently scheduled", canRetry = true)
                     } else {
                         val groupedArrivals = result.data
                             .groupBy { it.route }
