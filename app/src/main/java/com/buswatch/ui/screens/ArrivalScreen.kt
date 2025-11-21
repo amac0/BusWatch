@@ -100,7 +100,7 @@ fun ArrivalScreen(
                         },
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text("Change Stop")
+                        Text("Refresh Stop List")
                     }
                     Spacer(modifier = Modifier.height(16.dp))
                 }

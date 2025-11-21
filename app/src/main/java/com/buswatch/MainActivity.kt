@@ -62,6 +62,7 @@ class MainActivity : ComponentActivity() {
                         stopCode = selectedStop!!.code,
                         stopName = selectedStop!!.name,
                         onChangeStop = {
+                            stopListViewModel.loadNearbyStops()
                             selectedStop = null
                         }
                     )
