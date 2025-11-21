@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Bus body -->
+    <path
+        android:fillColor="#E53935"
+        android:pathData="M30,35 L78,35 Q82,35 82,39 L82,75 Q82,79 78,79 L30,79 Q26,79 26,75 L26,39 Q26,35 30,35 Z"/>
+
+    <!-- Windshield -->
+    <path
+        android:fillColor="#90CAF9"
+        android:pathData="M32,40 L76,40 L76,55 L32,55 Z"/>
+
+    <!-- Left window -->
+    <path
+        android:fillColor="#BBDEFB"
+        android:pathData="M32,40 L50,40 L50,55 L32,55 Z"/>
+
+    <!-- Right window -->
+    <path
+        android:fillColor="#BBDEFB"
+        android:pathData="M58,40 L76,40 L76,55 L58,55 Z"/>
+
+    <!-- Window divider -->
+    <path
+        android:fillColor="#E53935"
+        android:strokeWidth="2"
+        android:pathData="M54,40 L54,55"/>
+
+    <!-- Left headlight -->
+    <path
+        android:fillColor="#FFF59D"
+        android:pathData="M35,72 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"/>
+
+    <!-- Right headlight -->
+    <path
+        android:fillColor="#FFF59D"
+        android:pathData="M67,72 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"/>
+
+    <!-- Roof details -->
+    <path
+        android:fillColor="#C62828"
+        android:pathData="M30,35 L78,35 L76,31 L32,31 Z"/>
+
+    <!-- Bottom grill -->
+    <path
+        android:fillColor="#B71C1C"
+        android:pathData="M32,60 L76,60 L76,65 L32,65 Z"/>
+</vector>
