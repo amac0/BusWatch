@@ -96,6 +96,16 @@ fun ArrivalScreen(
                     Button(
                         onClick = {
                             view.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
+                            viewModel.retry()
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text("Refresh Schedule")
+                    }
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Button(
+                        onClick = {
+                            view.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
                             onChangeStop()
                         },
                         modifier = Modifier.fillMaxWidth()
