@@ -33,6 +33,9 @@ class StopListViewModel @Inject constructor(
     private var currentLocation: Location? = null
 
     init {
+        // Get initial location (uses cached if GPS unavailable)
+        loadNearbyStops()
+
         // Start monitoring location updates and refresh stops when location changes
         viewModelScope.launch {
             var previousLocation: Location? = null

@@ -14,6 +14,7 @@ import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -59,6 +60,7 @@ class StopListViewModelTest {
 
         val locationFlow = kotlinx.coroutines.flow.MutableStateFlow(mockLocation)
         coEvery { locationRepository.locationUpdates } returns locationFlow
+        coEvery { locationRepository.getCurrentLocation() } returns Result.Success(mockLocation)
         coEvery { tflRepository.getNearbyStops(any(), any()) } returns Result.Success(mockStops)
         every { preferencesDataStore.getLastStop() } returns flowOf(null)
 
@@ -92,6 +94,7 @@ class StopListViewModelTest {
         // Setup: LocationRepository will emit location updates via a Flow
         val locationFlow = kotlinx.coroutines.flow.MutableStateFlow(location1)
         coEvery { locationRepository.locationUpdates } returns locationFlow
+        coEvery { locationRepository.getCurrentLocation() } returns Result.Success(location1)
         coEvery { tflRepository.getNearbyStops(51.529168, -0.180107) } returns Result.Success(stopsAtLocation1)
         coEvery { tflRepository.getNearbyStops(51.525417, -0.179694) } returns Result.Success(stopsAtLocation2)
         every { preferencesDataStore.getLastStop() } returns flowOf(null)
@@ -113,5 +116,30 @@ class StopListViewModelTest {
         val state2 = viewModel.uiState.value
         assertTrue(state2 is UiState.Success)
         assertEquals("M", (state2 as UiState.Success).data.stops[0].code)
+    }
+
+    @Test
+    fun `init gets cached location when location updates never emit`() = runTest {
+        val mockLocation = mockk<Location> {
+            every { latitude } returns 51.5074
+            every { longitude } returns -0.1278
+        }
+        val mockStops = listOf(
+            BusStop("1", "BP", "Oxford St", 51.5074, -0.1278, listOf("25"), 100)
+        )
+
+        // locationUpdates never emits (simulating no GPS fix indoors)
+        coEvery { locationRepository.locationUpdates } returns emptyFlow()
+        // But getCurrentLocation returns cached location
+        coEvery { locationRepository.getCurrentLocation() } returns Result.Success(mockLocation)
+        coEvery { tflRepository.getNearbyStops(any(), any()) } returns Result.Success(mockStops)
+        every { preferencesDataStore.getLastStop() } returns flowOf(null)
+
+        viewModel = StopListViewModel(locationRepository, tflRepository, preferencesDataStore)
+        testDispatcher.scheduler.advanceUntilIdle()
+
+        // Should show stops from cached location, not stay in Loading
+        val state = viewModel.uiState.value
+        assertTrue("Expected Success state but got ${state::class.simpleName}", state is UiState.Success)
     }
 }
