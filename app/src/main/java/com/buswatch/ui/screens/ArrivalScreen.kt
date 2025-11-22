@@ -90,27 +90,29 @@ fun ArrivalScreen(
                 }
 
                 item {
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Button(
-                        onClick = {
-                            view.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
-                            viewModel.retry()
-                        },
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text("Refresh Schedule")
+                    Column(modifier = Modifier.fillMaxWidth()) {
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Button(
+                            onClick = {
+                                view.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
+                                viewModel.retry()
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text("Refresh Schedule")
+                        }
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Button(
+                            onClick = {
+                                view.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
+                                onChangeStop()
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text("Refresh Stop List")
+                        }
+                        Spacer(modifier = Modifier.height(16.dp))
                     }
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Button(
-                        onClick = {
-                            view.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
-                            onChangeStop()
-                        },
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text("Refresh Stop List")
-                    }
-                    Spacer(modifier = Modifier.height(16.dp))
                 }
             }
         }
