@@ -3,6 +3,7 @@
 A Wear OS app for tracking London bus arrivals in real-time, designed specifically for Pixel Watch and other Wear OS devices.
 
 **NOTE: This whole app was coded by Claude Code. That includes most of this page. Please use only at your own risk.**
+More about how it was developed at [my blog](https://www.bricoleur.org/2025/12/ai-coding-another-update.html)
 
 ## Features
 
