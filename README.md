@@ -2,6 +2,8 @@
 
 A Wear OS app for tracking London bus arrivals in real-time, designed specifically for Pixel Watch and other Wear OS devices.
 
+**NOTE: This whole app was coded by Claude Code. That includes most of this page. Please use only at your own risk.**
+
 ## Features
 
 - 📍 **Location-aware**: Automatically shows the 5 closest bus stops based on your current location
