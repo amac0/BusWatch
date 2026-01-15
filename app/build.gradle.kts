@@ -25,9 +25,23 @@ android {
         buildConfigField("String", "TFL_API_KEY", "\"$apiKey\"")
     }
 
+    signingConfigs {
+        create("release") {
+            val keystorePath = project.findProperty("release.keystore.path") as String?
+                ?: System.getenv("KEYSTORE_PATH")
+                ?: "../keystore/buswatch-upload.keystore"
+            storeFile = file(keystorePath)
+            storePassword = System.getenv("KEYSTORE_PASSWORD") ?: ""
+            keyAlias = "buswatch"
+            keyPassword = System.getenv("KEY_PASSWORD") ?: ""
+        }
+    }
+
     buildTypes {
         release {
-            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
