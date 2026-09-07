@@ -98,6 +98,8 @@ Found a bug or have a suggestion? Visit our GitHub page to report issues or cont
 - **Suggested design**: London bus with watch showing app UI
 
 ### Screenshots (Wear OS)
+
+Ready-made files: `docs/store-assets/screenshot-*.png` (912 x 912) and `docs/store-assets/feature-graphic.png` (1024 x 500).
 - **Size**: 384 x 384 PNG (circular crop for watch)
 - **Minimum**: 2 screenshots
 - **Maximum**: 8 screenshots
