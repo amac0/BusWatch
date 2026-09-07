@@ -53,7 +53,10 @@ All bus information is provided by the Transport for London (TfL) Unified API, e
 
 PRIVACY
 
-BusWatch respects your privacy. Your location is only used to find nearby stops and is never stored or shared. The app has no backend servers - data flows directly between your watch and TfL.
+BusWatch respects your privacy. Your location is used only to find nearby stops: it is sent to Transport for London's public API and nowhere else, and the app never stores it. The app has no backend servers, no accounts, and no analytics. Only your last selected stop is remembered, on the watch itself.
+
+Privacy policy: https://amac0.github.io/BusWatch/privacy-policy.html
+Terms of service: https://amac0.github.io/BusWatch/terms-of-service.html
 
 REQUIREMENTS
 
