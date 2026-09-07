@@ -15,6 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.buswatch.domain.model.BusStop
+import com.buswatch.ui.screens.AboutScreen
 import com.buswatch.ui.screens.ArrivalScreen
 import com.buswatch.ui.screens.StopListScreen
 import com.buswatch.ui.theme.BusWatchTheme
@@ -44,17 +45,24 @@ class MainActivity : ComponentActivity() {
         setContent {
             BusWatchTheme {
                 var selectedStop by remember { mutableStateOf<BusStop?>(null) }
+                var showAbout by remember { mutableStateOf(false) }
                 val scope = rememberCoroutineScope()
                 val stopListViewModel: StopListViewModel = viewModel()
 
-                if (selectedStop == null) {
+                if (showAbout) {
+                    AboutScreen(
+                        versionName = BuildConfig.VERSION_NAME,
+                        onBack = { showAbout = false }
+                    )
+                } else if (selectedStop == null) {
                     StopListScreen(
                         onStopSelected = { stop ->
                             scope.launch {
                                 stopListViewModel.saveSelectedStop(stop)
                                 selectedStop = stop
                             }
-                        }
+                        },
+                        onAboutSelected = { showAbout = true }
                     )
                 } else {
                     ArrivalScreen(

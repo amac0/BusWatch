@@ -30,6 +30,7 @@ import android.view.HapticFeedbackConstants
 @Composable
 fun StopListScreen(
     onStopSelected: (BusStop) -> Unit,
+    onAboutSelected: () -> Unit = {},
     viewModel: StopListViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -69,6 +70,21 @@ fun StopListScreen(
                         },
                         label = {
                             Text(text = "Refresh")
+                        },
+                        colors = ChipDefaults.secondaryChipColors(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 4.dp, horizontal = 8.dp)
+                    )
+                }
+                item {
+                    Chip(
+                        onClick = {
+                            view.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
+                            onAboutSelected()
+                        },
+                        label = {
+                            Text(text = "About & privacy")
                         },
                         colors = ChipDefaults.secondaryChipColors(),
                         modifier = Modifier
