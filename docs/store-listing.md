@@ -123,9 +123,9 @@ Found a bug or have a suggestion? Visit our GitHub page to report issues or cont
 
 ## Contact Details (Required)
 
-- **Email**: [Your support email]
-- **Website**: https://github.com/[username]/BusWatch
-- **Privacy policy**: https://[username].github.io/BusWatch/privacy-policy.html
+- **Email**: attnfeed@gmail.com
+- **Website**: https://github.com/amac0/BusWatch
+- **Privacy policy**: https://amac0.github.io/BusWatch/privacy-policy.html
 
 ---
 

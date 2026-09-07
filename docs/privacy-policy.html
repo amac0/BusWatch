@@ -5,94 +5,210 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BusWatch Privacy Policy</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
-        }
-        h1 { color: #1a73e8; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+               line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        h1 { color: #6e1423; }
         h2 { color: #444; margin-top: 2em; }
-        .last-updated { color: #666; font-style: italic; }
+        table { border-collapse: collapse; margin: 1em 0; font-size: 0.95em; }
+        th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; vertical-align: top; }
+        hr { border: 0; border-top: 1px solid #ddd; margin: 2em 0; }
     </style>
 </head>
 <body>
-    <h1>BusWatch Privacy Policy</h1>
-    <p class="last-updated">Last updated: January 2026</p>
+<h1 id="buswatch-privacy-policy">BusWatch Privacy Policy</h1>
+<p><strong>Effective Date:</strong> September 7, 2026</p>
+<hr>
+<h2 id="contents">Contents</h2>
+<ol>
+<li><a href="#1-who-we-are">Who We Are</a></li>
+<li><a href="#2-what-buswatch-does">What BusWatch Does</a></li>
+<li><a href="#3-data-the-app-uses">Data the App Uses</a></li>
+<li><a href="#4-permissions">Permissions</a></li>
+<li><a href="#5-third-party-services">Third-Party Services</a></li>
+<li><a href="#6-what-we-do-not-do">What We Do Not Do</a></li>
+<li><a href="#7-data-retention">Data Retention</a></li>
+<li><a href="#8-your-rights-and-choices">Your Rights and Choices</a></li>
+<li><a href="#9-childrens-privacy">Children&#39;s Privacy</a></li>
+<li><a href="#10-changes-to-this-policy">Changes to This Policy</a></li>
+<li><a href="#11-contact-us">Contact Us</a></li>
+<li><a href="#12-changelog">Changelog</a></li>
+</ol>
+<hr>
+<h2 id="1-who-we-are">1. Who We Are</h2>
+<p>BusWatch is a Wear OS app made by Attention Feed, Inc. (&quot;AttentionFeed,&quot; &quot;we,&quot; &quot;us,&quot;
+or &quot;our&quot;). It shows live London bus arrival times on your watch.</p>
+<p>This policy covers only the BusWatch app. Our websites and other services are covered
+by the <a href="https://attentionfeed.com/privacy/">AttentionFeed Privacy Policy</a>. When we say
+&quot;you,&quot; we mean the person using BusWatch.</p>
+<hr>
+<h2 id="2-what-buswatch-does">2. What BusWatch Does</h2>
+<p>BusWatch finds the bus stops closest to you, shows the routes that serve each stop, and
+shows live arrival predictions for the stop you pick. It has no account, no sign-in,
+and no servers of our own. Everything happens between your watch, Google&#39;s location
+services on the watch, and Transport for London&#39;s public data service.</p>
+<hr>
+<h2 id="3-data-the-app-uses">3. Data the App Uses</h2>
+<h3 id="31-your-location">3.1 Your Location</h3>
+<p>BusWatch reads your watch&#39;s location while the app is open. It uses the location to:</p>
+<ul>
+<li>Find bus stops within about 500 metres of you</li>
+<li>Refresh the list of stops when you move more than about 200 metres</li>
+<li>Decide whether the stop you last used is still close enough (within 500 metres) to
+show first</li>
+</ul>
+<p>To find stops, the app sends your latitude and longitude to Transport for London&#39;s
+(TfL) public data service. That request also carries your watch&#39;s IP address, standard
+request headers, and the API key we registered with TfL so the app is allowed to use
+the service.</p>
+<p>We never receive your location. BusWatch has no backend, so your location goes from
+your watch to TfL and nowhere else. The app does not keep a history of where you have
+been.</p>
+<h3 id="32-your-last-selected-stop">3.2 Your Last Selected Stop</h3>
+<p>To open quickly on the stop you used last time, the app stores three values on your
+watch:</p>
+<ul>
+<li>The identifier of the stop</li>
+<li>The stop&#39;s latitude and longitude (the stop&#39;s position, not yours)</li>
+</ul>
+<p>These values never leave the watch. They are replaced when you pick a different stop
+and are removed when you clear the app&#39;s data or uninstall the app.</p>
+<h3 id="33-bus-data">3.3 Bus Data</h3>
+<p>When you view a stop, the app asks TfL for arrivals at that stop by sending the stop&#39;s
+identifier. TfL&#39;s response contains public timetable and prediction data, not data
+about you.</p>
+<hr>
+<h2 id="4-permissions">4. Permissions</h2>
+<table>
+<thead>
+<tr>
+<th>Permission</th>
+<th>Why the app asks for it</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Precise location</td>
+<td>Find stops near you and keep the list current as you move</td>
+</tr>
+<tr>
+<td>Approximate location</td>
+<td>Fallback if precise location is unavailable</td>
+</tr>
+<tr>
+<td>Internet</td>
+<td>Fetch stops and arrivals from Transport for London</td>
+</tr>
+<tr>
+<td>Keep the watch awake</td>
+<td>Keep arrival times updating while you are looking at them</td>
+</tr>
+</tbody></table>
+<p>You can revoke location permission at any time in your watch&#39;s settings. Without it,
+BusWatch cannot find nearby stops.</p>
+<hr>
+<h2 id="5-third-party-services">5. Third-Party Services</h2>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>What it receives</th>
+<th>Why</th>
+<th>Their privacy policy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Transport for London (TfL) Unified API</strong></td>
+<td>Your latitude and longitude, the stop identifier you select, your IP address, standard request headers, and our API key</td>
+<td>Find nearby stops and fetch live arrivals</td>
+<td><a href="https://tfl.gov.uk/corporate/privacy-and-cookies/">TfL Privacy and Cookies</a></td>
+</tr>
+<tr>
+<td><strong>Google Play services (location)</strong></td>
+<td>Your location, processed on the watch to give the app a position</td>
+<td>Provide the device location the app reads</td>
+<td><a href="https://policies.google.com/privacy">Google Privacy Policy</a></td>
+</tr>
+<tr>
+<td><strong>Google Play</strong></td>
+<td>Whatever Google collects when you install or update an app</td>
+<td>Distribute the app</td>
+<td><a href="https://policies.google.com/privacy">Google Privacy Policy</a></td>
+</tr>
+</tbody></table>
+<p>We do not control how these services handle data they receive. Their policies apply to
+that processing.</p>
+<hr>
+<h2 id="6-what-we-do-not-do">6. What We Do Not Do</h2>
+<ul>
+<li>We do not run servers for BusWatch and do not receive any data from it.</li>
+<li>We do not use analytics, advertising, or crash-reporting services in the app.</li>
+<li>We do not set cookies or use tracking identifiers.</li>
+<li>We do not sell or share personal data.</li>
+<li>Release builds of the app do not write network traffic to logs. Development builds
+used only by us do.</li>
+</ul>
+<hr>
+<h2 id="7-data-retention">7. Data Retention</h2>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Where it lives</th>
+<th>How long</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Your location</td>
+<td>In memory on the watch while the app is open; sent to TfL per request</td>
+<td>Not kept by the app; TfL&#39;s retention applies to their logs</td>
+</tr>
+<tr>
+<td>Last selected stop (identifier and stop position)</td>
+<td>On your watch</td>
+<td>Until you pick another stop, clear the app&#39;s data, or uninstall</td>
+</tr>
+</tbody></table>
+<p>We hold nothing about you, so there is nothing for us to retain.</p>
+<hr>
+<h2 id="8-your-rights-and-choices">8. Your Rights and Choices</h2>
+<p>Because BusWatch stores data only on your own watch and we hold none of it, the usual
+requests to access, correct, or delete data are things you can do yourself:</p>
+<ul>
+<li><strong>Stop location use:</strong> revoke the location permission in your watch&#39;s settings.</li>
+<li><strong>Delete stored data:</strong> clear the app&#39;s data in your watch&#39;s settings, or uninstall
+the app.</li>
+<li><strong>Questions or concerns:</strong> email us at <a href="mailto:attnfeed@gmail.com">attnfeed@gmail.com</a>. We aim to respond within
+30 days.</li>
+</ul>
+<p>Depending on where you live, you may also have the right to lodge a complaint with your
+local data protection authority.</p>
+<hr>
+<h2 id="9-childrens-privacy">9. Children&#39;s Privacy</h2>
+<p>BusWatch is not directed at children under 13 and shows only public transport
+information. We do not knowingly collect personal data from anyone, children included.</p>
+<hr>
+<h2 id="10-changes-to-this-policy">10. Changes to This Policy</h2>
+<p>We may update this policy from time to time. When we do, we will update the effective
+date at the top of this page, publish the new version at the same address, and record
+the change in the <a href="#12-changelog">Changelog</a>. Continued use of the app after a change
+takes effect means you accept the update.</p>
+<hr>
+<h2 id="11-contact-us">11. Contact Us</h2>
+<p><strong>Email:</strong> <a href="mailto:attnfeed@gmail.com">attnfeed@gmail.com</a></p>
+<p><strong>Source code and issues:</strong> <a href="https://github.com/amac0/BusWatch">https://github.com/amac0/BusWatch</a></p>
+<hr>
+<h2 id="12-changelog">12. Changelog</h2>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Summary of Changes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>September 7, 2026</td>
+<td>Initial version</td>
+</tr>
+</tbody></table>
 
-    <h2>Overview</h2>
-    <p>
-        BusWatch is a Wear OS application that shows real-time London bus arrivals.
-        Your privacy is important to us. This policy explains what data we access and how we use it.
-    </p>
-
-    <h2>Data We Access</h2>
-    <h3>Location Data</h3>
-    <p>
-        BusWatch requests access to your device's location to find bus stops near you.
-        This location data is:
-    </p>
-    <ul>
-        <li><strong>Used locally only</strong> - Your location is sent directly to the Transport for London (TfL) API to find nearby stops</li>
-        <li><strong>Not stored</strong> - We do not store your location history</li>
-        <li><strong>Not shared</strong> - Your location is not shared with any third parties other than TfL's public API</li>
-        <li><strong>Not transmitted to our servers</strong> - BusWatch has no backend servers; all data flows directly between your device and TfL</li>
-    </ul>
-
-    <h3>Network Data</h3>
-    <p>
-        The app connects to the TfL Unified API to retrieve:
-    </p>
-    <ul>
-        <li>Bus stop information (names, locations, routes)</li>
-        <li>Real-time arrival predictions</li>
-    </ul>
-
-    <h2>Data We Store</h2>
-    <p>
-        BusWatch stores minimal data on your device only:
-    </p>
-    <ul>
-        <li><strong>Last selected stop</strong> - To quickly show your preferred stop when you open the app</li>
-        <li><strong>Preferences</strong> - Any app settings you configure</li>
-    </ul>
-    <p>
-        This data is stored locally on your watch and is not transmitted anywhere.
-    </p>
-
-    <h2>Third-Party Services</h2>
-    <h3>Transport for London (TfL) API</h3>
-    <p>
-        BusWatch uses the <a href="https://api.tfl.gov.uk/">TfL Unified API</a> to retrieve bus information.
-        When you use BusWatch, your approximate location is sent to TfL to find nearby stops.
-        TfL's privacy policy applies to their processing of this data:
-        <a href="https://tfl.gov.uk/corporate/privacy-and-cookies/">TfL Privacy Policy</a>
-    </p>
-
-    <h3>Google Play Services</h3>
-    <p>
-        BusWatch uses Google Play Services for location functionality.
-        Google's privacy policy applies: <a href="https://policies.google.com/privacy">Google Privacy Policy</a>
-    </p>
-
-    <h2>Children's Privacy</h2>
-    <p>
-        BusWatch does not knowingly collect any personal information from children.
-        The app simply displays public transport information.
-    </p>
-
-    <h2>Changes to This Policy</h2>
-    <p>
-        We may update this privacy policy from time to time. Any changes will be posted on this page
-        with an updated revision date.
-    </p>
-
-    <h2>Contact</h2>
-    <p>
-        If you have any questions about this privacy policy or BusWatch, please open an issue on our
-        <a href="https://github.com/amac/BusWatch">GitHub repository</a>.
-    </p>
 </body>
 </html>
