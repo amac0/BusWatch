@@ -90,7 +90,7 @@ Found a bug or have a suggestion? Visit our GitHub page to report issues or cont
 
 ### App Icon
 - **Size**: 512 x 512 PNG
-- **Location**: Already have launcher icon, export at 512px
+- **Location**: `docs/store-assets/app-icon-512.png` (rendered from the launcher icon)
 
 ### Feature Graphic
 - **Size**: 1024 x 500 PNG
